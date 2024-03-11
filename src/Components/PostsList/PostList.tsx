@@ -10,7 +10,6 @@ import { getPageCount, getPagesArray } from '../../utils/pages'
 import { Pagination } from '../Pagination/Pagination'
 import { Preloader } from '../Preloader/Preloader'
 
-
 export const PostsList: FC = () => {
 
     const [totalPage, setTotalPage] = useState(0)
@@ -25,15 +24,12 @@ export const PostsList: FC = () => {
 
     const changePage = (page: number) => {
         setPage(page)
-        disppatch(fetcPosts(limit, page))
-
     }
-
 
     useEffect(() => {
         disppatch(fetcPosts(limit, page))
         setTotalPage(getPageCount(100, limit))
-    }, [])
+    }, [page])
 
     if (isLoading)
         return (

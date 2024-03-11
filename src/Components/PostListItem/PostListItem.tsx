@@ -1,6 +1,7 @@
 import { FC } from "react";
 import style from './PostsListItem.module.scss'
 import { IPosts } from "../../Interfaces/Iposts";
+import { Link } from "react-router-dom";
 
 
 interface postListItemProps {
@@ -17,6 +18,7 @@ export const PostsListItem: FC<postListItemProps> = ({ item }) => {
             <span className={style.PostsListIte__title}>
                 {item.title}
             </span>
+            <Link className={style.PostsListIte__link} to={`/${item.id}`}>Description post</Link>
         </li>
     )
 }
