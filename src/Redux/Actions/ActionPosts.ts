@@ -1,7 +1,7 @@
 import axios from "axios"
 import { IPosts } from "../../Interfaces/Iposts"
 import { AppDispatch } from "../Store/Store"
-import { postDataFetchError, postDataFetching, postDataFetchingSuccess } from "../Reucers/PostsSlice"
+import { postDataFetchError, postDataFetching, postsDataFetchingSuccess } from "../Reucers/PostsSlice"
 
 export const fetcPosts = (limit: number, page: number) => async (dispatch: AppDispatch) => {
     try {
@@ -12,7 +12,7 @@ export const fetcPosts = (limit: number, page: number) => async (dispatch: AppDi
                 _page: page
             }
         })
-        dispatch(postDataFetchingSuccess(response.data))
+        dispatch(postsDataFetchingSuccess(response.data))
     } catch (error) {
         dispatch(postDataFetchError('ошибка, данных нет'))
     }

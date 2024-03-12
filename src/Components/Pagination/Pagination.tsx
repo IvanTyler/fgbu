@@ -5,19 +5,18 @@ import List from '../List/List'
 import { PaginationListItem } from '../PaginationItem/PaginationItem'
 
 interface paginationProps {
-    item: number[],
+    pages: number[],
     page: number,
     changePage: (item: number) => void
 }
 
-
-export const Pagination: FC<paginationProps> = ({ item, page, changePage }) => {
+export const Pagination: FC<paginationProps> = ({ pages, page, changePage }) => {
 
     return (
 
         <ul className={style.pagination}>
             <List
-                items={item}
+                items={pages}
                 renderItem={(item: number, index: any) => <PaginationListItem
                     currentPage={item}
                     page={page}

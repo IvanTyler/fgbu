@@ -8,13 +8,18 @@ interface paginationListProps {
 
 }
 
-export const PaginationListItem: FC<paginationListProps> = ({ page, currentPage, changePage }) => {
+export const PaginationListItem: FC<paginationListProps> = (
+    {
+        page,
+        currentPage,
+        changePage
+    }) => {
 
     return (
 
         <li className={style.paginationListItem}>
             <button
-            onClick={() => changePage(currentPage)}
+                onClick={() => changePage(currentPage)}
                 className={
                     page === currentPage ?
                         style.paginationListItem + ' ' + style.active :
