@@ -1,0 +1,46 @@
+.postsListItem {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    gap: 7px;
+    align-items: center;
+    grid-template-areas:
+        'number title'
+        'number link'
+    ;
+    padding: 10px;
+    background-color: #262830;
+    border: 2px solid #323540;
+    border-radius: 24px;
+
+    &__number {
+        grid-area: number;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: #CE1A30;
+        color: #fff;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+    }
+
+    &__title {
+        grid-area: title;
+        color: #fff;
+    }
+
+    &__link {
+        grid-area: link;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #ffd66e;
+
+        &::after {
+            content: '>'
+        }
+    }
+}
