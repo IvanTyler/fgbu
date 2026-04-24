@@ -7,16 +7,18 @@ import {ListItems} from "@/Components/List/ListItems";
 import {postType} from "@/api/types/postsType";
 
 interface IPostsListProps {
+    page: number
     posts: postType[]
 }
 
-export const PostsList: FC<IPostsListProps> = ({posts}) => {
+export const PostsList: FC<IPostsListProps> = ({posts, page}) => {
 
     return (
         <ul className={style.postList}>
                 <ListItems
                     items={posts}
                     renderItem={(item: postType) => <PostsListItem
+                        page={page}
                         item={item}
                         key={item.id}
                     />}

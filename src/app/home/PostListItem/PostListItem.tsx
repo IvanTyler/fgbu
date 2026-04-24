@@ -2,12 +2,16 @@ import { FC } from "react";
 import style from './PostsListItem.module.scss'
 import {postType} from "@/api/types/postsType";
 import Link from "next/link";
+import {pageNumberEnum} from "@/app/[id]/enums";
 
 interface postListItemProps {
+    page: number
     item: postType
 }
 
-export const PostsListItem: FC<postListItemProps> = ({ item }) => {
+export const PostsListItem: FC<postListItemProps> = ({ item, page }) => {
+
+    const link = `/${item.id}?${pageNumberEnum.pageNumber}=${page}`
 
     return (
         <li className={style.postsListItem}>
@@ -17,7 +21,7 @@ export const PostsListItem: FC<postListItemProps> = ({ item }) => {
             <span className={style.postsListItem__title}>
                 {item.title}
             </span>
-            <Link className={style.postsListItem__link} href={`/${item.id}`}>Description post</Link>
+            <Link className={style.postsListItem__link} href={link}>Description post</Link>
         </li>
     )
 }

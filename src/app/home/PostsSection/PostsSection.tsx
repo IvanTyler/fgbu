@@ -34,7 +34,7 @@ export const PostsSection: FC<IPostsSectionProps> = (
     return (
         <section className={style.postsSection}>
             <ContainerSection className={style.postsSectionContainer}>
-                <PostsList posts={posts} />
+                <PostsList posts={posts} page={currentPage} />
                 <Pagination
                     pages={pagesArray}
                     page={currentPage}
