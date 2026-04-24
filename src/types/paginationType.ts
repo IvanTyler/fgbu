@@ -1,4 +1,4 @@
 export type paginationType = {
     id: string;
-    pageNumber: number;
+    pageNumber: string;
 }

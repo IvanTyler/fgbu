@@ -18,19 +18,19 @@ const DetailedPage: FC = () => {
     const searchParams = useSearchParams()
 
     const params = useParams();
-    const postId = params.id;
+    const postId = params.id as string;
 
     const limit = 10;
     const firstPage = 1;
 
-    const rawPage = searchParams.get(pageNumberEnum.pageNumber) || firstPage;
-
+    const rawPage = searchParams.get(pageNumberEnum.pageNumber) ?? String(firstPage);
     const parsedPage = parseInt(rawPage, 10);
-    const activePageFromUrl = parsedPage || firstPage;
+
+    const activePageFromUrl = !isNaN(parsedPage) && parsedPage > 0 ? parsedPage : firstPage;
 
     const isCurrentPage = activePageFromUrl > limit ? firstPage : activePageFromUrl
 
-    function setSearchParam(pageNumber: number) {
+    function setSearchParam(pageNumber: string) {
         const params = new URLSearchParams(searchParams)
 
         params.set(pageNumberEnum.pageNumber, pageNumber)
@@ -48,7 +48,7 @@ const DetailedPage: FC = () => {
     const backInCatalog = `/?${pageNumberEnum.pageNumber}=${isCurrentPage}`
 
     useEffect(() => {
-        setSearchParam(isCurrentPage)
+        setSearchParam(String(isCurrentPage))
 
     }, [isCurrentPage]);
 

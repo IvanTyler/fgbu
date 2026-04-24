@@ -9,7 +9,7 @@ export const getPagesArray = (totalPages: number) => {
     for (let i = 0; i < totalPages; i++) {
         const page = {
             id: uuidv4(),
-            pageNumber: i + 1,
+            pageNumber: String(i + 1),
         }
         result.push(page)
     }

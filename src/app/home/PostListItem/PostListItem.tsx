@@ -5,7 +5,7 @@ import Link from "next/link";
 import {pageNumberEnum} from "@/app/[id]/enums";
 
 interface postListItemProps {
-    page: number
+    page: string
     item: postType
 }
 

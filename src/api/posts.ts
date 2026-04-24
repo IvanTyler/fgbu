@@ -3,7 +3,12 @@ import {Host} from "@/api/host";
 import axios from "axios";
 
 
-export async function fetchPosts(limit: number, page: number): Promise<postType> {
+type fetchDataPosts = {
+    posts: postType[],
+    totalCount: number,
+}
+
+export async function fetchPosts(limit: number, page: string): Promise<fetchDataPosts> {
     const url = `${Host}/posts?_page=${page}&_limit=${limit}`
 
     const response = await axios.get<postType[]>(url)
@@ -11,6 +16,6 @@ export async function fetchPosts(limit: number, page: number): Promise<postType>
 
     return  {
         posts: response.data,
-        totalCount: totalCount  // ← Вот здесь totalCount
+        totalCount: totalCount
     };
 }

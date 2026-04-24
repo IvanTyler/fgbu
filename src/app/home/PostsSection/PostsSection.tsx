@@ -12,10 +12,9 @@ import {getPageCount, getPagesArray} from "@/utils/pages";
 interface IPostsSectionProps {
     posts: postType[]
     totalCount: number;
-    currentPage: number;
+    currentPage: string;
     limit: number;
-    pagesArray: number[]
-    changePage: (item: number) => void
+    changePage: (item: string) => void
 }
 
 export const PostsSection: FC<IPostsSectionProps> = (

@@ -7,7 +7,7 @@ import {ListItems} from "@/Components/List/ListItems";
 import {postType} from "@/api/types/postsType";
 
 interface IPostsListProps {
-    page: number
+    page: string
     posts: postType[]
 }
 

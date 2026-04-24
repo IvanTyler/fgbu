@@ -7,8 +7,8 @@ import {paginationType} from "@/types/paginationType";
 
 interface paginationProps {
     pages: paginationType[],
-    page: number,
-    changePage: (item: number) => void
+    page: string,
+    changePage: (item: string) => void
 }
 
 export const Pagination: FC<paginationProps> = (

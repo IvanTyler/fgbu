@@ -19,23 +19,23 @@ export const PostManagementView: FC = () => {
     const limit = 10;
     const firstPage = 1;
 
-    const rawPage = searchParams.get(pageNumberEnum.pageNumber);
+    const rawPage = searchParams.get(pageNumberEnum.pageNumber) ?? String(firstPage);
     const parsedPage = parseInt(rawPage, 10);
 
-    const activePageFromUrl = parsedPage || firstPage;
-    const [page, setPage] = useState(activePageFromUrl)
+    const activePageFromUrl = !isNaN(parsedPage) && parsedPage > 0 ? parsedPage : firstPage;
+    const [page, setPage] = useState<string>(activePageFromUrl.toString())
 
 
-    function setSearchParam(pageNumber: number) {
+    function setSearchParam(pageNumber: string) {
         const params = new URLSearchParams(searchParams)
 
         params.set(pageNumberEnum.pageNumber, pageNumber)
         router.push(`${pathname}?${params.toString()}`, { scroll: false })
     }
 
-    const changePage = (pageNumber: number) => {
-        setPage(pageNumber)
-        setSearchParam(pageNumber)
+    const changePage = (pageNumber: string) => {
+        setPage(String(pageNumber))
+        setSearchParam(String(pageNumber))
     }
 
     const { data, status } = useQuery({
@@ -50,8 +50,8 @@ export const PostManagementView: FC = () => {
 
     useEffect(() => {
         setSearchParam(page)
-        if (totalCount && page > totalPages) {
-            changePage(firstPage);
+        if (totalCount && Number(page) > totalPages) {
+            changePage(String(firstPage));
         }
 
     }, [totalPages, page]);
@@ -65,7 +65,6 @@ export const PostManagementView: FC = () => {
                 totalCount={totalCount}
                 limit={limit}
                 currentPage={page}
-                totalPages={totalPages}
                 changePage={changePage}
             />
         case 'error':

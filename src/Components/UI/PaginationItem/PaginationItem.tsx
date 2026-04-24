@@ -3,9 +3,9 @@ import { FC } from 'react'
 import {clsx} from "clsx";
 
 interface paginationListProps {
-    page: number,
-    currentPage: number,
-    changePage: (item: number) => void
+    page: string,
+    currentPage: string,
+    changePage: (item: string) => void
 }
 
 export const PaginationListItem: FC<paginationListProps> = (
