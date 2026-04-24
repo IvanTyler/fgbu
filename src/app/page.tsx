@@ -1,9 +1,12 @@
 import {PostManagementView} from "@/app/home/PostManagementView/PostManagementView";
+import {Suspense } from "react";
 
 export default function Home() {
   return (
       <>
-        <PostManagementView />
+          <Suspense fallback={<div>Загрузка...</div>}>
+            <PostManagementView />
+          </Suspense>
       </>
   );
 }

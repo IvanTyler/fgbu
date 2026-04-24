@@ -1,6 +1,6 @@
 'use client'
 
-import {FC, useEffect} from 'react';
+import {FC, useEffect, Suspense} from 'react';
 import style from './ProductDetailPage.module.scss'
 import {useParams, usePathname, useRouter, useSearchParams} from "next/navigation";
 import {queryClient} from "@/api/queryClient";
@@ -56,16 +56,19 @@ const DetailedPage: FC = () => {
     if (isError) return <p>Не удалось загрузить пост</p>
 
     return (
-        <section className={style.detailPage}>
-            <ContainerSection className={style.detailPageContainer}>
-                <Link href={backInCatalog} className={style.detailPage__linkBackInCatalog}>
-                    back in catalog
-                </Link>
-                <div className={style.detailPage__description}>
-                    {post.body}
-                </div>
-            </ContainerSection>
-        </section>
+        <Suspense fallback={<div>Загрузка...</div>}>
+            <section className={style.detailPage}>
+                <ContainerSection className={style.detailPageContainer}>
+                    <Link href={backInCatalog} className={style.detailPage__linkBackInCatalog}>
+                        back in catalog
+                    </Link>
+                    <div className={style.detailPage__description}>
+                        {post.body}
+                    </div>
+                </ContainerSection>
+            </section>
+        </Suspense>
+
     )
 }
 
